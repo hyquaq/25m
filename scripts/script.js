@@ -1,0 +1,78 @@
+let body = document.querySelector("body");
+let btnStart = document.querySelector(".btn.start");
+let time = document.querySelector("#time");
+let add = document.querySelector(".btn.add");
+let remove = document.querySelector(".btn.remove");
+let idCountDown = "";
+let minus = 25;
+let second = 00;
+const spaceMinus = 5;
+const maxMinus = 100;
+const minMinus = 0;
+
+function addZero(number) {
+    return number >= 10 ? number : `0${number}`;
+}
+
+function playSound() {
+    let sound = document.createElement("audio");
+    sound.setAttribute("src", "../audios/sound.wav");
+    sound.autoplay = true;
+    // console.log(sound);
+    // document.appendChild(sound);
+}
+
+function countDown() {
+    if (second === 0 && minus === 0) {
+        clearInterval(idCountDown);
+        playSound();
+        return;
+    }
+    if (second === 0 && minus !== 0) {
+        minus--;
+        second = 60;
+    }
+    second--;
+    time.innerHTML = `${addZero(minus)}:${addZero(second)}`;
+}
+
+// run time
+btnStart.addEventListener("click", (e) => {
+    console.log(e);
+    body.classList.toggle("run");
+    if (e.target.classList.contains("stop")) {
+        e.target.classList.remove("fa-pause");
+        e.target.classList.add("fa-play");
+        clearInterval(idCountDown);
+
+        e.target.classList.remove("stop");
+        add.classList.remove("active");
+        remove.classList.remove("active");
+        minus = 25;
+        second = 00;
+        time.innerHTML = `${addZero(minus)}:${addZero(second)}`;
+    } else {
+        e.target.classList.add("fa-pause");
+        e.target.classList.remove("fa-play");
+        e.target.classList.add("stop");
+        // disable button add remove
+        add.classList.add("active");
+        remove.classList.add("active");
+
+        idCountDown = setInterval(countDown, 1000);
+    }
+});
+
+// add minus
+add.addEventListener("click", (e) => {
+    minus += spaceMinus;
+    if (minus >= maxMinus) minus -= spaceMinus;
+    time.textContent = `${addZero(minus)}:${addZero(second)}`;
+});
+
+// add minus
+remove.addEventListener("click", (e) => {
+    minus -= spaceMinus;
+    if (minus <= minMinus) minus += spaceMinus;
+    time.textContent = `${addZero(minus)}:${addZero(second)}`;
+});
