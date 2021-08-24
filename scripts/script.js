@@ -26,6 +26,12 @@ function countDown() {
     if (second === 0 && minus === 0) {
         clearInterval(idCountDown);
         playSound();
+        // alert("time stop!!!");
+        // btnStart.classList.remove("bx-pause");
+        // btnStart.classList.add("bx-play");
+        // body.classList.remove("run");
+        btnStart.click();
+
         return;
     }
     if (second === 0 && minus !== 0) {
@@ -41,8 +47,8 @@ btnStart.addEventListener("click", (e) => {
     console.log(e);
     body.classList.toggle("run");
     if (e.target.classList.contains("stop")) {
-        e.target.classList.remove("fa-pause");
-        e.target.classList.add("fa-play");
+        e.target.classList.remove("bx-pause");
+        e.target.classList.add("bx-play");
         clearInterval(idCountDown);
 
         e.target.classList.remove("stop");
@@ -52,8 +58,8 @@ btnStart.addEventListener("click", (e) => {
         second = 00;
         time.innerHTML = `${addZero(minus)}:${addZero(second)}`;
     } else {
-        e.target.classList.add("fa-pause");
-        e.target.classList.remove("fa-play");
+        e.target.classList.add("bx-pause");
+        e.target.classList.remove("bx-play");
         e.target.classList.add("stop");
         // disable button add remove
         add.classList.add("active");

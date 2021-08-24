@@ -13,8 +13,8 @@ $primaryBackground: #ffffff;
 $secondBackground: #1982e2;
 
 body {
-    // font-family: Roboto, sans-serif;
-    font-family: "Montserrat", sans-serif;
+    font-family: Roboto, sans-serif;
+    // font-family: "Montserrat", sans-serif;
     a {
         text-decoration: none;
     }
@@ -38,15 +38,19 @@ body {
     background-image: linear-gradient(#ccc, #ccc);
     &.run {
         background-image: linear-gradient(
-                68.3deg,
-                rgba(245, 177, 97, 1) 0.4%,
-                rgba(236, 54, 110, 1) 100.2%
-            );
+            68.3deg,
+            rgba(245, 177, 97, 1) 0.4%,
+            rgba(236, 54, 110, 1) 100.2%
+        );
     }
 }
 
 #time {
-    background-image: radial-gradient( circle farthest-corner at 12.3% 19.3%,  rgba(85,88,218,1) 0%, rgba(95,209,249,1) 100.2% );
+    background-image: radial-gradient(
+        circle farthest-corner at 12.3% 19.3%,
+        rgba(85, 88, 218, 1) 0%,
+        rgba(95, 209, 249, 1) 100.2%
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -54,7 +58,10 @@ body {
 p#time {
     font-size: 300px;
     text-align: center;
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
+        font-size: 150px;
+    }
+    @media screen and (max-width: 450px) {
         font-size: 100px;
     }
 }
@@ -67,33 +74,39 @@ p#time {
     .btn {
         width: fit-content;
         height: fit-content;
-        border-radius: 60px;
-        font-size: 60px;
-        padding: 2rem;
+        // border-radius: 60px;
+        // font-size: 60px;
+        // padding: 2rem;
         cursor: pointer;
 
         display: flex;
         justify-content: center;
         align-items: center;
 
-        background-color: #FFDEDE;
+        background-color: #ffdede;
         &.stop {
-            background-color: #F18266;
+            background-color: #f18266;
         }
         &:hover {
-            box-shadow: 0px 0px 10px #dcf495    ;
+            box-shadow: 0px 0px 10px #dcf495;
         }
-
     }
-    @media screen and (max-width:768px) {
+    @media screen and (max-width: 768px) {
         gap: 1rem;
         .btn {
             font-size: 20px;
             padding: 1rem;
         }
     }
+    @media screen and (max-width: 450px) {
+        gap: 0.5rem;
+        .btn {
+            font-size: 15px;
+            padding: 0.5rem;
+        }
+    }
 }
-    .active {
+.active {
     pointer-events: none;
     opacity: 0.2;
 }
