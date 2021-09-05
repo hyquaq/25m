@@ -9,6 +9,15 @@ let second = 00;
 const spaceMinus = 5;
 const maxMinus = 100;
 const minMinus = 0;
+const preUrl = "https://raw.githubusercontent.com/hyquaq/25m/master";
+
+function updateTitle() {
+    document.title = `Time ${addZero(minus)}:${addZero(second)}`;
+}
+
+function resetTitle() {
+    document.title = `Time`;
+}
 
 function addZero(number) {
     return number >= 10 ? number : `0${number}`;
@@ -16,7 +25,7 @@ function addZero(number) {
 
 function playSound() {
     let sound = document.createElement("audio");
-    sound.setAttribute("src", "../audios/sound.wav");
+    sound.setAttribute("src", preUrl + "/audios/sound.wav");
     sound.autoplay = true;
     // console.log(sound);
     // document.appendChild(sound);
@@ -40,6 +49,7 @@ function countDown() {
     }
     second--;
     time.innerHTML = `${addZero(minus)}:${addZero(second)}`;
+    updateTitle();
 }
 
 // run time
@@ -47,6 +57,9 @@ btnStart.addEventListener("click", (e) => {
     console.log(e);
     body.classList.toggle("run");
     if (e.target.classList.contains("stop")) {
+        // turn off
+        resetTitle();
+
         e.target.classList.remove("bx-pause");
         e.target.classList.add("bx-play");
         clearInterval(idCountDown);
@@ -58,6 +71,9 @@ btnStart.addEventListener("click", (e) => {
         second = 00;
         time.innerHTML = `${addZero(minus)}:${addZero(second)}`;
     } else {
+        // turn on
+        updateTitle();
+
         e.target.classList.add("bx-pause");
         e.target.classList.remove("bx-play");
         e.target.classList.add("stop");
